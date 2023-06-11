@@ -17,6 +17,8 @@ export default function Register({ challenge }: { challenge: string }) {
       const available =
         await PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable();
       setIsAvailable(available && supported());
+      console.log("supported: " + supported());
+      console.log("avaialble: " + available);
     };
 
     checkAvailability();
@@ -63,6 +65,10 @@ export default function Register({ challenge }: { challenge: string }) {
       setError(message);
     }
   };
+
+  if (isAvailable === null) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <Fragment>

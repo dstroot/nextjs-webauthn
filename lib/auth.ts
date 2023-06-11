@@ -1,4 +1,4 @@
-import prisma from "./database";
+import { prisma } from "./database";
 import type {
   VerifiedAuthenticationResponse,
   VerifiedRegistrationResponse,
@@ -32,7 +32,7 @@ function binaryToBase64url(bytes: Uint8Array) {
     str += String.fromCharCode(charCode);
   });
 
-  return btoa(str);
+  return btoa(str); // Buffer.from(str, "base64").toString();
 }
 
 export function generateChallenge() {
